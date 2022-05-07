@@ -21,13 +21,17 @@ const argv = yargs
             }
         },
         (args) => {
-            args.key == key
-                ? // Paso 8
+            if (args.key == key) {
                 child.exec('node index.js', (err, stdout) => {
-                    err ? console.log(err) : console.log(stdout)
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        console.log(stdout)
+                    }
                 })
-                : // Paso 9
+            } else {
                 console.log('Credenciales incorrectas')
+            }
         }
     )
     .help().argv
